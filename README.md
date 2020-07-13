@@ -14,7 +14,7 @@ Pueden usar cualquier lenguaje de programación para realizar esto. Entregar có
 
 Las dudas sobre la manera de implementar cada uno de los puntos serán resueltas en clase. La tarea debe ser entregada en un zip con su nombre y número de carnet o con un link de GitHub.
 
-##Puntos:
+## Puntos:
 
 Luego de cumplir con estos requerimientos, deben implementar estas features para obtener su nota. La nota máxima es 100.
 
