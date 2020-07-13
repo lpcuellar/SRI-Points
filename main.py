@@ -10,6 +10,7 @@
 ##  import gl library for drawing
 from gl import Render, color
 
+##  the variables that will be used along the program are declare down below
 title = "---    ESCRITOR DE IMÁGENES BMP    ---\n"
 intro_msg = "\nPrimero, hay que definir el tamaño de la imagen!"
 set_width = "\nIngrese el número de pixeles de largo (width): "
@@ -44,16 +45,19 @@ vp_width = 0
 vp_height = 0
 filename = "output.bmp"
 
+##  starts the program showing the title and some instructions
 print(title)
 input("Apache enter para continuar...")
 
 print(intro_msg)
 input("Apache enter para continuar...")
 
+##  starts the loop that will show the possible options that can be made to the image
 while(wants_to_continue):
     if(wants_to_change_size):
         is_values_ok = False
 
+        ##  check if the values are ok so it can move on
         while(is_values_ok == False):
             width = input(set_width)
             width = int(width)
@@ -65,15 +69,20 @@ while(wants_to_continue):
             else:
                 wants_to_change_size = False
                 is_values_ok = True
+
+                ##  create the window for the image
                 render = Render(width, height)
 
+    ##    prints the menu with his options
     print(menu)
     option = input()
     option = int(option)
 
+    ##  this options ask the user what color does he wants for his background
     if(option == 1):
         is_values_ok = False
 
+        ## ask the values for the rgb and check that they are valid
         while(is_values_ok == False):
             red = input("Ingrese el valor r del color deseado (de 0 a 1): ")
             red = float(red)
@@ -86,11 +95,15 @@ while(wants_to_continue):
                 print("\nPor favor escoger valores entre 0 y 1\n")
             else:
                 is_values_ok = True
+
+                ##  puts the background color to the image
                 render.glClearColor(red, green, blue)
 
+    ## asks the user about the viewport that wants to create
     elif(option == 2):
         is_values_ok = False
 
+        ##  ask the values and check if they´re valid
         while(is_values_ok == False):
             vp_x = input("Ingrese la coordenada en x: ")
             vp_x = int(vp_x)
@@ -110,14 +123,19 @@ while(wants_to_continue):
                 print("\nLos valores escogidos son más grandes que la imagen\n")
             else:
                 is_values_ok = True
+
+                ## create the viewport with the values given above
                 render.glViewPort(vp_x, vp_y, vp_width, vp_height)
 
-
+    ## this option is for drawing a point on the image, it can also change the color of the point
     elif(option == 3):
+
+        ##  asks if the user wants to change the color or draw the point
         print(draw_point_menu)
         point_option = input()
         point_option = int(point_option)
 
+        ## this option will change the color with the given values, also it validates them
         if(point_option == 1):
             is_values_ok = False
 
@@ -133,28 +151,36 @@ while(wants_to_continue):
                     print("\nPor favor escoger valores entre 0 y 1\n")
                 else:
                     is_values_ok = True
+
+                    ##  uses this function to change the default color of the point drawn
                     render.glColor(red, green, blue)
+
         elif(point_option == 2):
             is_values_ok = False
 
+            ##  asks the coordinates in which the user wants the point to be drawn
             while(is_values_ok == False):
                 point_x = input("Ingrese un valor en x relativo al  ViewPort (entre -1 y 1): ")
                 point_x = float(point_x)
                 point_y = input("Ingrese un valor en x relativo al  ViewPort (entre -1 y 1): ")
                 point_y = float(point_y)
 
-
+                ##  it validates the coordinates given above
                 if((point_x < -1 or point_x > 1) or (point_y < -1 or point_y > 1)):
                     print("\nPor favor escoger valores entre -1 y 1\n")
                 else:
                     is_values_ok = True
+
+                    ##  this function draws the point into the image
                     render.glVertex(point_x, point_y)
         else:
             print("Por favor escoja una opción válida!")
 
-
+    ##      this function saves all the data edited above and writes all the changes into the image
     elif(option == 4):
         render.glFinish(filename)
+
+    ##  this option will let you quit the program, it has a warnin message before quitting
     elif(option == 5):
         print("Si se sale del programa y no ha guardado la imagen no se notará ningún cambio!")
         exit = input("Desea salir del programa? (Si o No): ")
