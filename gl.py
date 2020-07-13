@@ -4,7 +4,7 @@
 ##  SECCIÓN 20
 ##
 ##  SR1: Points
-##  AUTOR:  LUIS PEDRO CUÉLLAR - 18220
+##  LUIS PEDRO CUÉLLAR - 18220
 ##
 
 import struct
@@ -63,16 +63,16 @@ class Render(object):
         self.g = g
         self.b = b
 
-        new_color = color(self.r, self.g, self.b)
+        self.bg_color = color(self.r, self.g, self.b)
 
-        self.glClear(self.new_color)
+        self.glClear(self.bg_color)
 
     ##  changes the color of a point in the area defined in glViewPort
     ##  the color used in this function is defined in glColor
     def glVertex(self, x, y):
-        ver_x =int(((x+1)*(self.vp_width/2))+ self.vp_x)
-        ver_y =int(((y+1)*(self.vp_height/2))+ self.vp_y)
-        self.pixels[ver_x][ver_y]=self.current_color
+        ver_x = int(((x + 1) * (self.vp_width / 2)) + self.vp_x)
+        ver_y = int(((y + 1) * (self.vp_height / 2)) + self.vp_y)
+        self.pixels[ver_x][ver_y] = self.current_color
 
     ##  defines the color that will be used in glVertex
     def glColor(self, r, g, b):
